@@ -4,6 +4,8 @@ import axios from "axios";
 import { Navigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Context } from "../main";
+import { API_URL } from "../config";
+
 
 const OtpVerification = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
@@ -34,7 +36,7 @@ const OtpVerification = () => {
       otp: enteredOtp,
       phone,
     };
-    await axios.post("http://localhost:4000/api/v1/user/otp-verification", data, {
+    await axios.post(`${API_URL}/api/v1/user/otp-verification`, data, {
         withCredentials: true,
         headers: { "Content-Type": "application/json" },
       })

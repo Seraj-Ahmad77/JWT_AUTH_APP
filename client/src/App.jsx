@@ -10,12 +10,15 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { Context } from "./main";
 import OtpVerification from "./pages/OtpVerification";
+import { API_URL } from "./config.js";
+
+
 
 const App = () => {
   const {setIsAuthenticated,setUser}=useContext(Context);
   useEffect(()=>{
     const getUser=async()=>{
-      await axios.get("http://localhost:4000/api/v1/user/me",{withCredentials:true}).then((res)=>{
+      await axios.get(`${API_URL}/api/v1/user/me`,{withCredentials:true}).then((res)=>{
         setUser(res.data.user);
         setIsAuthenticated(true);
       }).catch((error)=>{

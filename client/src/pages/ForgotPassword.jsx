@@ -4,6 +4,7 @@ import { useContext } from "react";
 import {Context} from "../main"
 import axios from "axios";
 import { toast } from "react-toastify";
+import { API_URL } from "../config";
 
 const ForgotPassword = () => {
   const {isAuthenticated}=useContext(Context);
@@ -11,7 +12,7 @@ const ForgotPassword = () => {
 
   const handleForgotPassword=async(e)=>{
     e.preventDefault()
-    await axios.post("http://localhost:4000/api/v1/user/password/forgot",{email},{
+    await axios.post(`${API_URL}/api/v1/user/password/forgot`,{email},{
       withCredentials:true,
       headers:{
         "Content-Type":"application/json"
