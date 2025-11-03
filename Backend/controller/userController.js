@@ -123,7 +123,7 @@ async function sendVerificationCode(
       });
     }
   } catch (error) {
-    console.log(error);
+    console.log("error ",error);
     return next(new ErrorHandler("Verification code failed to send.", 500)); // Pass the error to the error handling middleware
   }
 }
