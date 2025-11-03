@@ -58,7 +58,6 @@ export const register = catchAsyncErrors(async (req, res, next) => {
   const user = await User.create(userdata);
   const verificationCode = await user.generateVerificationCode();
   await user.save();
-console.log("hi"+verificationCode)
   // Send verification code based on the method (email or phone)
   sendVerificationCode(
     verificationMethod,
@@ -83,8 +82,10 @@ async function sendVerificationCode(
   try {
     // If the verification method is email
     if (verificationMethod === "email") {
+      console.log("Email started")
       const message = generateEmailTemplate(verificationCode);
       await sendEmail({ email, subject: "Your verification code", message });
+      console.log("email end")
       return res.status(200).json({
         success: true,
         message: `Verification code successfully sent to ${name}`,
