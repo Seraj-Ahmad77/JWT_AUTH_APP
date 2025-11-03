@@ -58,7 +58,7 @@ export const register = catchAsyncErrors(async (req, res, next) => {
   const user = await User.create(userdata);
   const verificationCode = await user.generateVerificationCode();
   await user.save();
-
+console.log("hi"+verificationCode)
   // Send verification code based on the method (email or phone)
   sendVerificationCode(
     verificationMethod,
